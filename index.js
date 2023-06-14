@@ -1,10 +1,10 @@
 // Задача 1: Напишіть функцію, яка перетворює рядок в число, використовуючи Number()
-
 function stringToNumber(str) {
+  const a1 = Number(str);
   // Використовуємо Number() для перетворення рядка в число
   // Повертаємо отримане число
+  return a1;
 }
-
 console.log("Завдання 1 ====================================");
 console.log('stringToNumber("42")', stringToNumber("42")); // Виведе 42
 
@@ -12,14 +12,26 @@ console.log('stringToNumber("42")', stringToNumber("42")); // Виведе 42
 
 function isAlmostSame(num1, num2) {
   // Визначаємо, чи є різниця між двома числами меншою або рівною EPSILON
+  let a = num1;
+  let b = num2;
+  if (a - b < Number.EPSILON && b - a < Number.EPSILON) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 console.log("Завдання 2 ====================================");
 console.log("isAlmostSame(0.1 + 0.2, 0.3)", isAlmostSame(0.1 + 0.2, 0.3)); // Виведе true
 
 // Задача 3: Напишіть функцію, яка перевіряє, чи є число безпечним цілим числом
 
 function isSafeInteger(num) {
+  const a = num;
+  if (a <= Number.MAX_SAFE_INTEGER && a >= Number.MIN_SAFE_INTEGER) {
+    return true;
+  } else {
+    return false;
+  }
   // Перевіряємо, чи є число меншим або рівним MAX_SAFE_INTEGER і більшим або рівним MIN_SAFE_INTEGER
 }
 
@@ -44,6 +56,7 @@ console.log(
 // Задача 5: Напишіть функцію, яка перевіряє, чи є число надто великим для представлення в JavaScript
 
 function isTooLarge(num) {
+  return num > Number.MAX_VALUE ? "true" : num;
   // Перевіряємо, чи є число більшим за MAX_VALUE
 }
 
@@ -57,6 +70,7 @@ console.log(
 
 function isAlmostZero(num) {
   // Перевіряємо, чи є число більше 0, але все ще менше за Number.MIN_VALUE
+  return num < Number.MIN_VALUE ? "false" : num;
 }
 
 console.log("Завдання 6 ====================================");
