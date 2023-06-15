@@ -1,20 +1,19 @@
 // Задача 1: Напишіть функцію, яка перетворює рядок в число, використовуючи Number()
 function stringToNumber(str) {
-  const a1 = Number(str);
+  return Number(str);
   // Використовуємо Number() для перетворення рядка в число
   // Повертаємо отримане число
-  return a1;
 }
 console.log("Завдання 1 ====================================");
 console.log('stringToNumber("42")', stringToNumber("42")); // Виведе 42
 
-// Задача 2: Напишіть функцію, яка визначає, чи є два числа майже однаковими, використовуючи Number.EPSILON
+// Задача 2: Напишіть функцію, яка визначає, чи є два числа майже однаковими,
+//використовуючи Number.EPSILON
 
 function isAlmostSame(num1, num2) {
   // Визначаємо, чи є різниця між двома числами меншою або рівною EPSILON
-  let a = num1;
-  let b = num2;
-  if (a - b < Number.EPSILON && b - a < Number.EPSILON) {
+
+  if (num1 - num2 <= Number.EPSILON) {
     return true;
   } else {
     return false;
@@ -26,8 +25,7 @@ console.log("isAlmostSame(0.1 + 0.2, 0.3)", isAlmostSame(0.1 + 0.2, 0.3)); // В
 // Задача 3: Напишіть функцію, яка перевіряє, чи є число безпечним цілим числом
 
 function isSafeInteger(num) {
-  const a = num;
-  if (a <= Number.MAX_SAFE_INTEGER && a >= Number.MIN_SAFE_INTEGER) {
+  if (num <= Number.MAX_SAFE_INTEGER && num >= Number.MIN_SAFE_INTEGER) {
     return true;
   } else {
     return false;
@@ -41,9 +39,12 @@ console.log(
   isSafeInteger(Number.MAX_SAFE_INTEGER + 1)
 ); // Виведе false
 
-// Задача 4: Використовуючи результати Задачі 3, напишіть функцію, яка перевіряє, чи є число небезпечним цілим числом
+// Задача 4: Використовуючи результати Задачі 3, напишіть функцію, яка перевіряє,
+//чи є число небезпечним цілим числом
 
 function isUnsafeInteger(num) {
+  return !isSafeInteger(num);
+
   // Використовуємо логічну оператор НЕ (!), щоб отримати протилежну відповідь від функції isSafeInteger()
 }
 
@@ -56,21 +57,21 @@ console.log(
 // Задача 5: Напишіть функцію, яка перевіряє, чи є число надто великим для представлення в JavaScript
 
 function isTooLarge(num) {
-  return num > Number.MAX_VALUE ? "true" : num;
+  return num > Number.MAX_VALUE;
   // Перевіряємо, чи є число більшим за MAX_VALUE
 }
-
 console.log("Завдання 5 ====================================");
 console.log(
   "isTooLarge(Number.MAX_VALUE * 2)",
   isTooLarge(Number.MAX_VALUE * 2)
 ); // Виведе true
 
-// Задача 6: Напишіть функцію, яка перевіряє, чи є число меншим чим  найменше можливе числове значення в JavaScript
+// Задача 6: Напишіть функцію, яка перевіряє, чи є число меншим чим
+// найменше можливе числове значення в JavaScript
 
 function isAlmostZero(num) {
   // Перевіряємо, чи є число більше 0, але все ще менше за Number.MIN_VALUE
-  return num < Number.MIN_VALUE ? "false" : num;
+  return num > 0 && num < Number.MIN_VALUE;
 }
 
 console.log("Завдання 6 ====================================");
@@ -83,7 +84,9 @@ console.log("isAlmostZero(Number.MIN_VALUE)", isAlmostZero(Number.MIN_VALUE)); /
 // Задача 7: Напишіть функцію, яка перевіряє, чи є значення цілим числом
 
 function checkIsInteger(num) {
-  // Використовуємо вбудовану функцію Number.isInteger(), щоб перевірити, чи є значення цілим числом
+  return Number.isInteger(num);
+  // Використовуємо вбудовану функцію Number.isInteger(), щоб перевірити,
+  // чи є значення цілим числом
 }
 
 console.log("Завдання 7 ====================================");
@@ -92,7 +95,9 @@ console.log("checkIsInteger(42.5)", checkIsInteger(42.5)); // Виведе false
 // Задача 8: Напишіть функцію, яка перевіряє, чи є значення безпечним цілим числом
 
 function checkIsSafeInteger(num) {
-  // Використовуємо вбудовану функцію Number.isSafeInteger(), щоб перевірити, чи є значення безпечним цілим числом
+  // Використовуємо вбудовану функцію Number.isSafeInteger(), щоб перевірити,
+  //чи є значення безпечним цілим числом
+  return Number.isSafeInteger(num);
 }
 
 console.log("Завдання 8 ====================================");
@@ -104,6 +109,7 @@ console.log(
 // Задача 9: Напишіть функцію, яка конвертує число в рядок з експоненційним представленням
 
 function convertToExponential(num) {
+  return num.toExponential();
   // Використовуємо метод toExponential(), щоб конвертувати число в рядок з експоненційним представленням
 }
 
@@ -113,6 +119,7 @@ console.log("convertToExponential(42)", convertToExponential(42)); // Вивед
 // Задача 10: Напишіть функцію, яка конвертує число в рядок з фіксованою кількістю знаків після коми
 
 function convertToFixed(num, precision) {
+  return num.toFixed(precision);
   // Використовуємо метод toFixed(), щоб конвертувати число в рядок з фіксованою кількістю знаків після коми
 }
 
@@ -122,6 +129,8 @@ console.log("convertToFixed(42.9876, 2)", convertToFixed(42.9876, 2)); // Вив
 // Задача 11: Напишіть функцію, яка конвертує число в рядок
 
 function convertToString(num) {
+  return num.toString();
+
   // Використовуємо метод toString(), щоб конвертувати число в рядок
 }
 
@@ -132,6 +141,7 @@ console.log("convertToString(42)", convertToString(42)); // Виведе "42"
 
 function convertToPrecision(num, precision) {
   // Використовуємо метод toPrecision(), щоб округлити число до вказаної довжини
+  return num.toPrecision(precision);
 }
 
 console.log("Завдання 12 ====================================");
